@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Categories from '../components/Categories'
 import Search from '../components/Search';
 import Trending from './Trending';
+import Other from './Other';
 
 const Home = () => {
     const title = document.querySelector("title");
@@ -25,6 +26,7 @@ const Home = () => {
             <Search />
             <Categories />
             <Trending />
+            <Other />
         </>
     )
 }

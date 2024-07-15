@@ -2,9 +2,9 @@ import React from 'react'
 import useFetch from '../components/useFetch'
 import { Link } from 'react-router-dom';
 
-const Trending = () => {
+const Other = () => {
     const apiK = import.meta.env.REACT_APP_API_KEY;
-    const { data, loading, error } = useFetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiK}&number=4`);
+    const { data, loading, error } = useFetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiK}&number=8`);
 
     if (loading) return <p>Loading...</p>
     if (error) return <p>Error: {error}</p>
@@ -13,7 +13,7 @@ const Trending = () => {
         <>
             {data && (
                 <>
-                    <h1 className=' font-bold text-lg mt-4'>Trending Recipes</h1>
+                    <h1 className=' font-bold text-lg mt-6'>Other recipes you might like</h1>
                     <div className='grid grid-cols-4 gap-3'>
                         {data.recipes.map((recipe) => {
                             return (
@@ -42,9 +42,8 @@ const Trending = () => {
                     </div>
                 </>
             )}
-
         </>
     )
 }
 
-export default Trending
+export default Other
