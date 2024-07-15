@@ -30,7 +30,7 @@ const SearchResult = () => {
                                 {data.results.map((recipe) => (
                                     <Link to={`/recipe/${recipe.title}/${recipe.id}`}
                                         key={recipe.id}
-                                        className='hover:scale-105 relative rounded-lg overflow-hidden'>
+                                        className='transition delay-75 hover:scale-105 relative rounded-lg overflow-hidden'>
                                         <img src={`${recipe.image}`}
                                             alt={recipe.title}
                                             className='w-full h-48 object-cover shadow-md'
