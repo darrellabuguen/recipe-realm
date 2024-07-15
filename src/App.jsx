@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Category from './pages/Category';
 import SearchResult from './pages/SearchResult';
+import Recipe from './pages/Recipe';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/category/:categoryname" element={<Category />} />
           <Route exact path="/search/:query" element={<SearchResult />} />
+          <Route exact path="/recipe/:recipeid" element={<Recipe />} />
         </Routes>
       </BrowserRouter>
     </>

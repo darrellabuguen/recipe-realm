@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Categories from '../components/Categories'
 import Search from '../components/Search';
+import Trending from './Trending';
 
 const Home = () => {
     const title = document.querySelector("title");
@@ -16,6 +17,7 @@ const Home = () => {
             </header>
             <Search />
             <Categories />
+            <Trending />
         </>
     )
 }
