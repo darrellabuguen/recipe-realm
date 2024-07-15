@@ -14,15 +14,28 @@ const Trending = () => {
             {data && (
                 <>
                     <h1 className=' font-bold text-lg mt-4'>Trending Recipes</h1>
-                    <div className='grid grid-cols-4'>
+                    <div className='grid grid-cols-4 gap-2'>
                         {data.recipes.map((recipe) => {
                             return (
-                                <Link to={`recipe/${recipe.id}`} key={recipe.id} className='p-2'>
-                                    <img src={`${recipe.image}`} alt={recipe.title} className='w-full h-48 object-cover' />
-                                    <h2 title={recipe.title}
-                                        className='font-bold text-sm mt-2 line-clamp-1'>
-                                        {recipe.title}
-                                    </h2>
+                                <Link to={`recipe/${recipe.title}/${recipe.id}`}
+                                    key={recipe.id}
+                                    className='hover:scale-105 relative'>
+                                    <img src={`${recipe.image}`}
+                                        alt={recipe.title}
+                                        className='w-full h-48 object-cover shadow-md'
+                                    />
+                                    <div
+                                        className='absolute top-0 left-0 p-3 h-full w-full flex flex-col justify-end'
+                                        style={{
+                                            color: 'white',
+                                            background: "linear-gradient(to bottom, rgba(250,250,250,0), rgba(0,0,0,0.8))"
+                                        }}
+                                    >
+                                        <h2 title={recipe.title}
+                                            className='font-bold text-sm mt-2 line-clamp-1'>
+                                            {recipe.title}
+                                        </h2>
+                                    </div>
                                 </Link>
                             )
                         })}

@@ -12,7 +12,14 @@ const Home = () => {
         <>
             <header>
                 <nav>
-                    <Link to={"/"} className="logo text-2xl">Recipe Realm</Link>
+                    <Link to={"/"}
+                        className="logo text-2xl"
+                        style={{
+                            textShadow: "1px 1px 3px #323232"
+                        }}
+                    >
+                        Recipe Realm
+                    </Link>
                 </nav>
             </header>
             <Search />

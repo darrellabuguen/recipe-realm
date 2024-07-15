@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/category/:categoryname" element={<Category />} />
           <Route exact path="/search/:query" element={<SearchResult />} />
-          <Route exact path="/recipe/:recipeid" element={<Recipe />} />
+          <Route exact path="/recipe/:recipetitle/:recipeid" element={<Recipe />} />
         </Routes>
       </BrowserRouter>
     </>
