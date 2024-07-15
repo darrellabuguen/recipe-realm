@@ -13,7 +13,7 @@ const Search = () => {
                 id='search'
                 onKeyDown={(e) => {
                     if (e.key == "Enter" && e.target.value.length > 0) {
-                        navigate(`/search/${e.target.value}`);
+                        navigate(`/search/${e.target.value}/0`);
                     }
                 }}
             />
@@ -21,7 +21,7 @@ const Search = () => {
                 className='p-2 bg-gray-200 outline-none rounded-md hover:bg-gray-400 transition delay-75 ease-in-out'
                 onClick={() => {
                     const query = document.querySelector('input[type="search"]').value;
-                    navigate(`/search/${query}`)
+                    navigate(`/search/${query}/0`)
                 }}
             >
                 <IoSearch />
