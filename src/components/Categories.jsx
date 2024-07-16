@@ -17,18 +17,23 @@ const Categories = () => {
             <div className='w-1/2 m-auto'>
                 <Splide
                     options={{
+                        pagination: false,
                         gap: "1rem",
-                        perPage: "3",
-                        pagination: false
+                        drag: "free",
+                        padding: "8%",
+                        perPage: "3"
                     }}
                 >
                     {
                         categories.map(category => {
                             return (
-                                <SplideSlide key={category.name}>
+                                <SplideSlide
+                                    key={category.name}
+                                    className='bg-gray-200 rounded-lg'
+                                >
                                     <Link to={`/category/${category.name}/0`}>
-                                        <div className="p-2 text-center">
-                                            <h2>{category.name}</h2>
+                                        <div className="p-1 text-center">
+                                            <h2 className='line-clamp-1'>{category.name}</h2>
                                         </div>
                                     </Link>
                                 </SplideSlide>
