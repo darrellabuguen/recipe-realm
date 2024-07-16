@@ -26,7 +26,7 @@ const Categories = () => {
                         categories.map(category => {
                             return (
                                 <SplideSlide key={category.name}>
-                                    <Link to={`/category/${category.name}`}>
+                                    <Link to={`/category/${category.name}/0`}>
                                         <div className="p-2 text-center">
                                             <h2>{category.name}</h2>
                                         </div>

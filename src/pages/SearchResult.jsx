@@ -25,7 +25,7 @@ const SearchResult = () => {
                         <>
                             <div className='flex items-center justify-between'>
                                 <div>search result for <b>{query}</b></div>
-                                <div>showing {Math.round(parseInt(pagenum / 8) + 1)} of {Math.round(parseInt(data.totalResults) / 8)}</div>
+                                <div>showing {Math.round(parseInt(pagenum / 8) + 1)} of {Math.ceil(parseInt(data.totalResults) / 8)}</div>
                             </div>
                             <div className='grid grid-cols-4 gap-3'>
                                 {data.results.map((recipe) => (
@@ -79,7 +79,7 @@ const SearchResult = () => {
                                 <button
                                     className='w-5 h-5 rounded-full'
                                     onClick={() => {
-                                        if (Math.round(parseInt(pagenum / 8) + 1) == parseInt(data.totalResults)) {
+                                        if (parseInt(pagenum) + parseInt(data.totalResults) % 8 == parseInt(data.totalResults)) {
                                             return alert('No more pages to display');
                                         } else {
                                             navigate(`/search/${query}/${parseInt(pagenum) + 8}`);
