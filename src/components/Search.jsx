@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Search = () => {
     const navigate = useNavigate();
     return (
-        <div className='my-4 flex justify-center gap-1'>
+        <div className='my-4 mb-14 flex justify-center gap-1'>
             <input type="search"
                 className='border-2 outline-none rounded-md pl-1 focus:border-red-500 transition delay-75 ease-in-out'
                 autoComplete='off'

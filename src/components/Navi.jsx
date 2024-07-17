@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Search from '../components/Search';
 
 const Navi = () => {
     const categories = [
@@ -65,6 +66,7 @@ const Navi = () => {
                     </div>
                 </nav>
             </header>
+            <Search />
         </>
     )
 }

@@ -1,4 +1,3 @@
-import Search from '../components/Search';
 import Trending from './Trending';
 import Other from './Other';
 
@@ -9,7 +8,6 @@ const Home = () => {
 
     return (
         <>
-            <Search />
             <Trending />
             <Other />
         </>
