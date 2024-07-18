@@ -1,19 +1,30 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
+import { LuPrinter } from "react-icons/lu";
+import Similar from '../components/Similar';
 
 const Recipe = () => {
     const { recipetitle, recipeid } = useParams();
     const apiK = import.meta.env.REACT_APP_API_KEY;
     const { data, loading, error } = useFetch(`https://api.spoonacular.com/recipes/${recipeid}/information?includeNutrition=true&apiKey=${apiK}`);
+    const nutri_arr = [
+        { name: "Calories", nutri_index: "0" },
+        { name: "Fat", nutri_index: "1" },
+        { name: "Saturated Fat", nutri_index: "2" },
+        { name: "Cholesterol", nutri_index: "6" },
+        { name: "Carbohydrates", nutri_index: "3" },
+        { name: "Sugar", nutri_index: "5" },
+        { name: "Protein", nutri_index: "9" },
+        { name: "Sodium", nutri_index: "7" },
+        { name: "Fiber", nutri_index: "22" },
+    ];
 
     const title = document.querySelector("title");
     title.innerText = `${recipetitle} - Recipe`; //change title
 
     if (loading) return <p>Loading...</p>
     if (error) return <p>Error: {error}</p>
-
-    console.log(data);
 
     return (
         <>
@@ -26,21 +37,52 @@ const Recipe = () => {
                     >
                         {data.title}
                     </h1>
-                    <div className='flex gap-4 mt-6'>
+                    <div className='my-3'>
+                        <span className='text-sm text-gray-500'>
+                            {data.aggregateLikes} likes
+                        </span>{" "}
+                        | {" "}
+                        <Link to={data.sourceUrl} className='text-sm text-gray-500 hover:text-red-500'>
+                            {data.sourceUrl}
+                        </Link>
+                    </div>
+                    <div className='mt-12'>
                         <img src={
-                            data.image.replace("556x370", "636x393")
+                            data.image.replace("556x370", "636x393")    //change image size
                         }
                             alt="img"
                             className='rounded-lg'
+                            style={{
+                                height: "393px",
+                                width: "636px"
+                            }}
                         />
                         <p
-                            className='line-clamp-5 leading-8'
+                            className='leading-8 mt-4'
                             dangerouslySetInnerHTML={{ __html: data.summary }}
                         ></p>
                     </div>
-                    <div className='flex mt-6 leading-8'>
-                        <div className='w-1/2'>
-                            <h2 className='font-medium text-2xl'
+                    <div className='flex mt-16 leading-8 gap-4'>
+                        <div className='w-3/5'>
+                            <ul className='flex items-center'>
+                                <li className='text-sm border-r pr-6'>
+                                    <small className='block text-gray-500'>PREP TIME</small>
+                                    <span className='text-base'>{data.readyInMinutes} MIN</span>
+                                </li>
+                                <li className='text-sm border-r pl-2 pr-6'>
+                                    <small className='block text-gray-500'>SERVINGS</small>
+                                    <span className='text-base'>{data.servings} PEOPLE</span>
+                                </li>
+                                <li
+                                    className='pl-2 pr-4 cursor-pointer'
+                                    onClick={() => {
+                                        window.print();
+                                    }}
+                                >
+                                    <LuPrinter />
+                                </li>
+                            </ul>
+                            <h2 className='font-medium text-2xl mt-12'
                                 style={{
                                     fontFamily: "Libre Baskerville, serif"
                                 }}
@@ -48,7 +90,7 @@ const Recipe = () => {
                                 Ingredients
                             </h2>
                             <ul className='list-disc'>
-                                {data.extendedIngredients.map(ing => {
+                                {data.extendedIngredients.map((ing) => {
                                     return (
                                         <li key={ing.id}
                                             className=' list-none flex items-center gap-4'
@@ -69,8 +111,8 @@ const Recipe = () => {
                                         >
                                             <input
                                                 type="checkbox"
-                                                name={ing.original}
-                                                id={ing.original}
+                                                name={ing.name}
+                                                id={ing.nameClean}
                                                 className=' pointer-events-none transition-all delay-75'
                                             />
                                             <p className='pointer-events-none transition-all delay-75'>{ing.original}</p>
@@ -87,7 +129,7 @@ const Recipe = () => {
                             </h2>
                             <div dangerouslySetInnerHTML={{ __html: data.instructions }}></div>
                         </div>
-                        <div className='w-1/2'>
+                        <div className='w-2/5'>
                             <div className='bg-slate-100 p-4 rounded-md'>
                                 <h2 className='font-medium text-2xl mb-4'
                                     style={{
@@ -97,98 +139,33 @@ const Recipe = () => {
                                     Nutrition Facts
                                 </h2>
                                 <ul>
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Calories
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[0].amount}
-                                            {data.nutrition.nutrients[0].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500 rounded-md' />
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Fat
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[1].amount}
-                                            {data.nutrition.nutrients[1].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500 rounded-md' />
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Saturated Fat
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[2].amount}
-                                            {data.nutrition.nutrients[2].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500' />
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Cholesterol
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[6].amount}
-                                            {data.nutrition.nutrients[6].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500' />
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Carbohydrates
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[3].amount}
-                                            {data.nutrition.nutrients[3].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500' />
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Sugar
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[5].amount}
-                                            {data.nutrition.nutrients[5].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500' />
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Protein
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[9].amount}
-                                            {data.nutrition.nutrients[9].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500' />
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Sodium
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[7].amount}
-                                            {data.nutrition.nutrients[7].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500' />
-                                    <li className='flex items-center justify-between'>
-                                        <span className='text-slate-700'>
-                                            Fiber
-                                        </span>
-                                        <span>
-                                            {data.nutrition.nutrients[22].amount}
-                                            {data.nutrition.nutrients[22].unit}
-                                        </span>
-                                    </li>
-                                    <hr className='border border-slate-500' />
+                                    {
+                                        nutri_arr.map((nutrient, index) => {
+                                            return (
+                                                <li key={nutrient.name}>
+                                                    <div className='flex items-center justify-between'>
+                                                        <span className='text-gray-500'>
+                                                            {nutrient.name}
+                                                        </span>
+                                                        <span>
+                                                            {data.nutrition.nutrients[nutrient.nutri_index].amount}
+                                                            {data.nutrition.nutrients[nutrient.nutri_index].unit}
+                                                        </span>
+                                                    </div>
+                                                    {index !== nutri_arr.length - 1 &&
+                                                        <hr className='border border-gray-500 rounded-md' />
+                                                    }
+                                                </li>
+                                            )
+                                        })
+                                    }
                                 </ul>
                             </div>
+                            <Similar id={recipeid}
+                                style={{
+                                    float: "right"
+                                }}
+                            />
                         </div>
                     </div>
                 </>

@@ -17,12 +17,8 @@ const Navi = () => {
         <>
             <header>
                 <nav className='flex items-center font-medium'>
-                    <div className="logo text-2xl flex-1">
-                        <Link to={"/"}
-                            style={{
-                                textShadow: "1px 1px 3px #323232"
-                            }}
-                        >
+                    <div className="logo text-4xl flex-1">
+                        <Link to={"/"}>
                             Recipe Realm
                         </Link>
                     </div>
