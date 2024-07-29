@@ -20,6 +20,7 @@ function App() {
           <Route exact path="/search/:query/:pagenum" element={<SearchResult />} />
           <Route exact path="/recipe/:recipetitle/:recipeid" element={<Recipe />} />
           <Route exact path='/cuisines' element={<Cuisines />} />
+          <Route exact path='/cuisine/:cuisinename/:pagenum' element={<Cuisines />} />
         </Routes>
       </BrowserRouter>
     </>
