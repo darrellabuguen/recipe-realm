@@ -21,15 +21,17 @@ const Similar = (props) => {
                     <div className='grid grid-rows-4 gap-3 my-3'>
                         {data.map((recipe) => {
                             return (
-                                <div key={recipe.id} className='w-full rounded-md'>
-                                    <Link to={`/recipe/${recipe.title}/${recipe.id}`}>
-                                        <img src={`https://img.spoonacular.com/recipes/${recipe.id}-240x150.jpg`}
+                                <div key={recipe.id} className='rounded-md'>
+                                    <Link to={`/recipe/${recipe.title}/${recipe.id}`}
+                                        className='flex gap-2 max-lg:flex-col max-md:flex-row max-sm:flex-col'
+                                    >
+                                        <img src={`https://img.spoonacular.com/recipes/${recipe.id}-556x370.jpg`}
                                             alt={recipe.title}
-                                            className='rounded-md'
+                                            className='w-64 rounded-md max-sm:w-full'
                                         />
-                                        <figcaption className='mt-2'
+                                        <figcaption
                                             style={{
-                                                width: "240px"
+                                                width: "210px"
                                             }}
                                         >
                                             <h3 className='font-medium text-lg'>

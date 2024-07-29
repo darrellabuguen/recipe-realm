@@ -30,7 +30,7 @@ const Recipe = () => {
         <>
             {data && (
                 <>
-                    <h1 className='font-medium text-5xl font-serif'
+                    <h1 className='font-medium text-3xl font-serif'
                         style={{
                             fontFamily: "Libre Baskerville, serif",
                         }}
@@ -57,13 +57,9 @@ const Recipe = () => {
                                 width: "636px"
                             }}
                         />
-                        <p
-                            className='leading-8 mt-4'
-                            dangerouslySetInnerHTML={{ __html: data.summary }}
-                        ></p>
                     </div>
-                    <div className='flex mt-16 leading-8 gap-4'>
-                        <div className='w-3/5'>
+                    <div className='flex mt-10 leading-8 gap-4 max-md:flex-col'>
+                        <div className='w-3/5 max-md:w-full'>
                             <ul className='flex items-center'>
                                 <li className='text-sm border-r pr-6'>
                                     <small className='block text-gray-500'>PREP TIME</small>
@@ -82,7 +78,7 @@ const Recipe = () => {
                                     <LuPrinter />
                                 </li>
                             </ul>
-                            <h2 className='font-medium text-2xl mt-12'
+                            <h2 className='font-medium text-2xl mt-10'
                                 style={{
                                     fontFamily: "Libre Baskerville, serif"
                                 }}
@@ -129,7 +125,7 @@ const Recipe = () => {
                             </h2>
                             <div dangerouslySetInnerHTML={{ __html: data.instructions }}></div>
                         </div>
-                        <div className='w-2/5'>
+                        <div className='w-2/5  max-md:w-full'>
                             <div className='bg-slate-100 p-4 rounded-md'>
                                 <h2 className='font-medium text-2xl mb-4'
                                     style={{
