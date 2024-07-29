@@ -6,6 +6,7 @@ import Category from './pages/Category';
 import SearchResult from './pages/SearchResult';
 import Recipe from './pages/Recipe';
 import Navi from './components/Navi';
+import Cuisines from './pages/Cuisines';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/category/:categoryname/:pagenum" element={<Category />} />
           <Route exact path="/search/:query/:pagenum" element={<SearchResult />} />
           <Route exact path="/recipe/:recipetitle/:recipeid" element={<Recipe />} />
+          <Route exact path='/cuisines' element={<Cuisines />} />
         </Routes>
       </BrowserRouter>
     </>

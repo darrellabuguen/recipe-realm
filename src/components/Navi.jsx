@@ -15,7 +15,7 @@ const Navi = () => {
 
     return (
         <>
-            <header>
+            <header className="mb-14">
                 <nav className='flex items-center font-medium'>
                     <div className="logo text-4xl flex-1">
                         <Link to={"/"}>
@@ -59,10 +59,15 @@ const Navi = () => {
                                 </div>
                             </div>
                         </div>
+                        <Link to={"/cuisines"}
+                            className="hover:text-red-500"
+                        >
+                            Cuisines
+                        </Link>
+                        <Search />
                     </div>
                 </nav>
             </header>
-            <Search />
         </>
     )
 }
