@@ -4,38 +4,69 @@ import useFetch from '../components/useFetch';
 
 const Cuisines = () => {
     const { cuisinename } = useParams();
+    const title = document.querySelector("title");
     const apiK = import.meta.env.REACT_APP_API_KEY;
     const cuisines = [
-        { name: "African" }, { name: "Asian" }, { name: "American" },
-        { name: "British" }, { name: "Cajun" }, { name: "Carribean" },
-        { name: "Chinese" }, { name: "Eastern European" }, { name: "European" },
-        { name: "French" }, { name: "German" }, { name: "Greek" },
-        { name: "Indian" }, { name: "Irish" }, { name: "Italian" },
-        { name: "Japanese" }, { name: "Jewish" }, { name: "Korean" },
-        { name: "Latine American" }, { name: "Mediterranean" }, { name: "Mexican" },
-        { name: "Middle Eastern" }, { name: "Nordic" }, { name: "Southern" },
-        { name: "Spanish" }, { name: "Thai" }, { name: "Vietnamese" }
+        { name: "African", image: "../src/assets/african.jpg" },
+        { name: "Asian", image: "../src/assets/asian.jpg" },
+        { name: "American", image: "../src/assets/american.jpg" },
+        { name: "British", image: "../src/assets/british.jpg" },
+        { name: "Chinese", image: "../src/assets/chinese.jpg" },
+        { name: "European", image: "../src/assets/european.jpg" },
+        { name: "French", image: "../src/assets/french.jpg" },
+        { name: "German", image: "../src/assets/german.jpeg" },
+        { name: "Greek", image: "../src/assets/greek.jpg" },
+        { name: "Indian", image: "../src/assets/indian.jpg" },
+        { name: "Irish", image: "../src/assets/irish.jpg" },
+        { name: "Italian", image: "../src/assets/italian.jpg" },
+        { name: "Japanese", image: "../src/assets/japanese.jpg" },
+        { name: "Jewish", image: "../src/assets/jewish.jpg" },
+        { name: "Korean", image: "../src/assets/korean.jpg" },
+        { name: "Spanish", image: "../src/assets/spanish.webp" },
+        { name: "Thai", image: "../src/assets/thai.jpg" },
+        { name: "Vietnamese", image: "../src/assets/vietnamese.jpg" }
     ]
 
     if (cuisinename) {
         var { data, loading, error } = useFetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiK}&cuisine=${cuisinename}&number=8`);
     }
 
+    if (error) return <p>Error: {error}</p>
+
+    title.innerText = cuisinename ? `${cuisinename} - Cuisine` : `Cuisines - Recipe Realm`; //change title
+
     return (
         <>
-            <h1>{!cuisinename ? "Cuisines" : cuisinename}</h1>
+            <h1 className='font-medium text-2xl mb-4'>{!cuisinename ? "Cuisines" : cuisinename}</h1>
             {!cuisinename &&
-                <ul className='grid grid-cols-3 gap-4'>
+                <div className='grid grid-cols-4 gap-4 max-sm:grid-cols-2 max-md:grid-cols-2 max-lg:grid-cols-3'>
                     {cuisines.map((cuisine) => (
-                        <Link
-                            to={`/cuisine/${cuisine.name}/0`}
-                            key={cuisine.name}
-                            className='border border-gray-200'
+                        <div key={cuisine.name}
+                            className='cursor-pointer text-center font-semibold hover:text-red-500'
                         >
-                            {cuisine.name}
-                        </Link>
+                            <figure
+                                className='rounded-full w-60 h-60 max-sm:w-auto max-sm:h-28'
+                                style={{
+                                    overflow: "hidden",
+                                    margin: "auto"
+                                }}
+                            >
+                                <Link
+                                    to={`/cuisine/${cuisine.name}/0`}
+                                >
+                                    <img src={cuisine.image}
+                                        alt={cuisine.name}
+                                        className='w-full h-full object-cover transition-all duration-1000 hover:scale-105'
+                                        style={{
+                                            transitionTimingFunction: "easeInOut"
+                                        }}
+                                    />
+                                </Link>
+                            </figure>
+                            <figcaption>{cuisine.name}</figcaption>
+                        </div>
                     ))}
-                </ul>
+                </div>
             }
 
             {data &&
