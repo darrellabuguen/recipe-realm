@@ -7,7 +7,7 @@ const Search = () => {
     return (
         <div className='flex justify-center gap-1'>
             <input type="search"
-                className='border-2 outline-none rounded-md pl-1 focus:border-red-500 transition delay-75 ease-in-out'
+                className='border-2 border-black outline-none rounded-md pl-1 focus:border-red-500 transition delay-75 ease-in-out'
                 autoComplete='off'
                 placeholder='search'
                 id='search'
@@ -18,13 +18,13 @@ const Search = () => {
                 }}
             />
             <button
-                className=' outline-none rounded-md transition delay-75 ease-in-out'
+                className=' outline-none rounded-md transition delay-75 ease-in-out hover:text-red-500'
                 onClick={() => {
                     const query = document.querySelector('input[type="search"]').value;
                     navigate(`/search/${query}/0`)
                 }}
             >
-                <IoSearch className='hover:text-red-500' />
+                <IoSearch className='w-5 h-5' />
             </button>
         </div>
     )

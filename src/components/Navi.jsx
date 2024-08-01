@@ -22,7 +22,7 @@ const Navi = () => {
                             Recipe Realm
                         </Link>
                     </div>
-                    <div className='flex items-center gap-6 flex-1'>
+                    <div className='flex items-center gap-6'>
                         <Link to="/"
                             className="hover:text-red-500"
                         >
