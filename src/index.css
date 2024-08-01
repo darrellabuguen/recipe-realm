@@ -22,3 +22,8 @@ a {
   font-family: 'Dancing Script', cursive;
   font-weight: 700;
 }
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}

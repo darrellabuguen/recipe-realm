@@ -19,14 +19,14 @@ const Navi = () => {
 
     return (
         <>
-            <header className="mb-14 max-md:mb-4">
-                <nav className='flex items-center font-medium'>
-                    <div className="logo text-4xl flex-1 max-lg:text-3xl">
+            <header className="mb-10 max-md:mb-4">
+                <nav className='flex items-center gap-6 font-medium max-md:gap-2'>
+                    <div className="logo text-3xl max-lg:text-3xl max-md:flex-1">
                         <Link to={"/"}>
                             Recipe Realm
                         </Link>
                     </div>
-                    <div className='flex items-center gap-6 max-md:hidden'>
+                    <div className='flex flex-1 items-center gap-6 max-md:hidden mr-4'>
                         <Link to="/"
                             className="hover:text-red-500"
                         >
@@ -40,6 +40,11 @@ const Navi = () => {
                             }}
                             onMouseLeave={() => {
                                 isHovered("0px");
+                            }}
+
+                            onClick={() => {
+                                let categories = document.querySelector(".category-container");
+                                isHovered(`${categories.scrollHeight}px`);
                             }}
                         >
                             Categories
@@ -68,10 +73,10 @@ const Navi = () => {
                         >
                             Cuisines
                         </Link>
-                        <Search />
                     </div>
+                    <Search />
                     <div
-                        className="hidden cursor-pointer max-md:flex max-md:gap-2"
+                        className="hidden cursor-pointer max-md:flex hover:text-red-500"
                         onClick={() => {
                             let mbc = document.querySelector(".mobile-container");
                             setMenu(showMenu === "0px" ? `${mbc.scrollHeight}px` : "0px");
@@ -79,7 +84,6 @@ const Navi = () => {
                             setRotation("rotate-0")
                         }}
                     >
-                        <Search />
                         <GiHamburgerMenu className="h-5 w-5" />
                     </div>
                 </nav>
