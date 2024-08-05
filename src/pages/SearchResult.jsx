@@ -1,13 +1,17 @@
 import React from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Pagination from '../components/Pagination';
 
 const SearchResult = () => {
     const { query, pagenum } = useParams();
     const apiK = import.meta.env.REACT_APP_API_KEY;
     const navigate = useNavigate();
     const title = document.querySelector("title");
+
+    const setPageNumber = (number) => {
+        navigate(`/search/${query}/${number}`);
+    }
 
     const { data, loading, error } = useFetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiK}&query=${query}&number=8&offset=${pagenum}`);
 
@@ -51,44 +55,7 @@ const SearchResult = () => {
                                     </Link>
                                 ))}
                             </div>
-                            <div className='flex items-center gap-3 justify-center'>
-                                <button
-                                    className='w-5 h-5 rounded-full'
-                                    onClick={() => {
-                                        if (pagenum == 0) {
-                                            return alert('No more pages to display');
-                                        } else {
-                                            navigate(`/search/${query}/${parseInt(pagenum) - 8}`);
-                                        }
-                                    }}
-                                >
-                                    <IoIosArrowBack />
-                                </button>
-                                <input type="number"
-                                    name="pagenumber"
-                                    id="pagenumber"
-                                    onKeyDown={(e) => {
-                                        if (e.key == "Enter") {
-                                            var page = parseInt(e.target.value);
-                                            if (page <= parseInt(data.totalResults) && page > 0) {
-                                                navigate(`/search/${query}/${(page - 1) * 8}`);
-                                            }
-                                        }
-                                    }}
-                                />
-                                <button
-                                    className='w-5 h-5 rounded-full'
-                                    onClick={() => {
-                                        if (parseInt(pagenum) + parseInt(data.totalResults) % 8 == parseInt(data.totalResults)) {
-                                            return alert('No more pages to display');
-                                        } else {
-                                            navigate(`/search/${query}/${parseInt(pagenum) + 8}`);
-                                        }
-                                    }}
-                                >
-                                    <IoIosArrowForward />
-                                </button>
-                            </div>
+                            <Pagination page={pagenum} total={data.totalResults} set={setPageNumber} />
                         </>
                     }
                 </>
