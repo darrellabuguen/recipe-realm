@@ -31,28 +31,22 @@ const SearchResult = () => {
                                 <div>search result for <b>{query}</b></div>
                                 <div>showing {Math.round(parseInt(pagenum / 8) + 1)} of {Math.ceil(parseInt(data.totalResults) / 8)}</div>
                             </div>
-                            <div className='grid grid-cols-4 gap-3'>
+                            <div className='grid grid-cols-4 gap-4 mb-4 max-sm:grid-cols-1 max-md:grid-cols-2'>
                                 {data.results.map((recipe) => (
-                                    <Link to={`/recipe/${recipe.title}/${recipe.id}`}
+                                    <div
                                         key={recipe.id}
-                                        className='transition delay-75 hover:scale-105 relative rounded-lg overflow-hidden'>
-                                        <img src={`${recipe.image}`}
-                                            alt={recipe.title}
-                                            className='w-full h-48 object-cover shadow-md'
-                                        />
-                                        <div
-                                            className='absolute top-0 left-0 p-3 h-full w-full flex flex-col justify-end'
-                                            style={{
-                                                color: 'white',
-                                                background: "linear-gradient(to bottom, rgba(250,250,250,0), rgba(0,0,0,0.8))"
-                                            }}
-                                        >
-                                            <h2 title={recipe.title}
-                                                className='font-bold text-sm mt-2 line-clamp-1'>
-                                                {recipe.title}
-                                            </h2>
-                                        </div>
-                                    </Link>
+                                        className='flex flex-col hover:text-red-500'
+                                    >
+                                        <Link to={`/recipe/${recipe.title}/${recipe.id}`}
+                                            key={recipe.id}
+                                            className='transition h-64 w-full rounded-lg overflow-hidden'>
+                                            <img src={`${recipe.image}`}
+                                                alt={recipe.title}
+                                                className='w-full h-full object-cover shadow-md'
+                                            />
+                                        </Link>
+                                        <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1'>{recipe.title}</span>
+                                    </div>
                                 ))}
                             </div>
                             <Pagination page={pagenum} total={data.totalResults} set={setPageNumber} />
