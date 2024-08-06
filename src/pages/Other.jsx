@@ -12,7 +12,7 @@ const Other = () => {
     return (
         <>
             {data && (
-                <div className='mt-10'>
+                <div className='mt-20'>
                     <h1 className='border-l-4 border-red-500 font-bold text-lg pl-2 mt-6 mb-4'>Other recipes you might like</h1>
                     <div className='grid grid-cols-4 gap-4  max-sm:grid-cols-1 max-md:grid-cols-2'>
                         {data.recipes.map((recipe) => {
@@ -28,7 +28,9 @@ const Other = () => {
                                             className='w-full h-full object-cover shadow-md hover:scale-105 transition-all duration-1000'
                                         />
                                     </Link>
-                                    <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1'>{recipe.title}</span>
+                                    <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1 cursor-pointer'>
+                                        {recipe.title}
+                                    </span>
                                 </div>
                             )
                         })}
