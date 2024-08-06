@@ -27,8 +27,8 @@ const SearchResult = () => {
                     {data.totalResults == 0 && <div>No result found</div>}
                     {data.totalResults >= 1 &&
                         <>
-                            <div className='flex items-center justify-between'>
-                                <div>search result for <b>{query}</b></div>
+                            <div className='flex items-center justify-between mb-4'>
+                                <div>result for <b className='text-red-500'>{query}</b></div>
                                 <div>showing {Math.round(parseInt(pagenum / 8) + 1)} of {Math.ceil(parseInt(data.totalResults) / 8)}</div>
                             </div>
                             <div className='grid grid-cols-4 gap-4 mb-4 max-sm:grid-cols-1 max-md:grid-cols-2'>
@@ -42,10 +42,12 @@ const SearchResult = () => {
                                             className='transition h-64 w-full rounded-lg overflow-hidden'>
                                             <img src={`${recipe.image}`}
                                                 alt={recipe.title}
-                                                className='w-full h-full object-cover shadow-md'
+                                                className='w-full h-full object-cover shadow-md hover:scale-105 transition-all duration-1000'
                                             />
                                         </Link>
-                                        <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1'>{recipe.title}</span>
+                                        <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1 cursor-pointer'>
+                                            {recipe.title}
+                                        </span>
                                     </div>
                                 ))}
                             </div>
