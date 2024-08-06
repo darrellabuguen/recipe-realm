@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import useFetch from '../components/useFetch';
+import { Link, useNavigate } from 'react-router-dom'
 
 const Cuisines = () => {
-    const { cuisinename } = useParams();
     const title = document.querySelector("title");
-    const apiK = import.meta.env.REACT_APP_API_KEY;
+    const navigate = useNavigate();
     const cuisines = [
         { name: "African", image: "../src/assets/african.jpg" },
         { name: "Asian", image: "../src/assets/asian.jpg" },
@@ -27,72 +25,47 @@ const Cuisines = () => {
         { name: "Vietnamese", image: "../src/assets/vietnamese.jpg" }
     ]
 
-    if (cuisinename) {
-        var { data, loading, error } = useFetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiK}&cuisine=${cuisinename}&number=8`);
-    }
-
-    if (error) return <p>Error: {error}</p>
-
-    title.innerText = cuisinename ? `${cuisinename} - Cuisine` : `Cuisines - Recipe Realm`; //change title
+    title.innerText = `Cuisines - Recipe Realm`; //change title
 
     return (
         <>
             <h1 className='border-l-4 border-red-500 font-bold text-lg pl-2 mt-6 mb-4'>
-                {!cuisinename ? "Cuisines" : cuisinename}
+                Cuisines
             </h1>
-            {!cuisinename &&
-                <div className='grid grid-cols-4 gap-4 max-sm:grid-cols-2 max-md:grid-cols-2 max-lg:grid-cols-3'>
-                    {cuisines.map((cuisine) => (
-                        <div key={cuisine.name}
-                            className='cursor-pointer text-center font-semibold hover:text-red-500'
+            <div className='grid grid-cols-4 gap-4 max-sm:grid-cols-2 max-md:grid-cols-2 max-lg:grid-cols-3'>
+                {cuisines.map((cuisine) => (
+                    <div key={cuisine.name}
+                        className='cursor-pointer text-center font-semibold hover:text-red-500'
+                    >
+                        <figure
+                            className='rounded-full w-60 h-60 max-sm:w-auto max-sm:h-28'
+                            style={{
+                                overflow: "hidden",
+                                margin: "auto"
+                            }}
                         >
-                            <figure
-                                className='rounded-full w-60 h-60 max-sm:w-auto max-sm:h-28'
-                                style={{
-                                    overflow: "hidden",
-                                    margin: "auto"
-                                }}
+                            <Link
+                                to={`/cuisine/${cuisine.name}/0`}
                             >
-                                <Link
-                                    to={`/cuisine/${cuisine.name}/0`}
-                                >
-                                    <img src={cuisine.image}
-                                        alt={cuisine.name}
-                                        className='w-full h-full object-cover transition-all duration-1000 hover:scale-105'
-                                        style={{
-                                            transitionTimingFunction: "easeInOut"
-                                        }}
-                                    />
-                                </Link>
-                            </figure>
-                            <figcaption>{cuisine.name}</figcaption>
-                        </div>
-                    ))}
-                </div>
-            }
-
-            {data &&
-                <div className='grid grid-cols-4 gap-3'>
-                    {data.results.map((recipe) => {
-                        return (
-                            <div
-                                key={recipe.id}
-                                className='flex flex-col hover:text-red-500'
-                            >
-                                <Link to={`/recipe/${recipe.title}/${recipe.id}`}
-                                    key={recipe.id}
-                                    className='transition h-64 w-full rounded-lg overflow-hidden'>
-                                    <img src={`${recipe.image}`}
-                                        alt={recipe.title}
-                                        className='w-full h-full object-cover shadow-md'
-                                    />
-                                </Link>
-                                <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1'>{recipe.title}</span>
-                            </div>
-                        )
-                    })}
-                </div>
-            }
+                                <img src={cuisine.image}
+                                    alt={cuisine.name}
+                                    className='w-full h-full object-cover transition-all duration-1000 hover:scale-105'
+                                    style={{
+                                        transitionTimingFunction: "easeInOut"
+                                    }}
+                                />
+                            </Link>
+                        </figure>
+                        <figcaption
+                            onClick={() => {
+                                navigate(`/cuisine/${cuisine.name}/0`);
+                            }}
+                        >
+                            {cuisine.name}
+                        </figcaption>
+                    </div>
+                ))}
+            </div>
         </>
     )
 }

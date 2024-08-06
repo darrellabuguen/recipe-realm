@@ -7,6 +7,7 @@ import SearchResult from './pages/SearchResult';
 import Recipe from './pages/Recipe';
 import Navi from './components/Navi';
 import Cuisines from './pages/Cuisines';
+import CuisinePage from './pages/CuisinePage';
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
           <Route exact path="/search/:query/:pagenum" element={<SearchResult />} />
           <Route exact path="/recipe/:recipetitle/:recipeid" element={<Recipe />} />
           <Route exact path='/cuisines' element={<Cuisines />} />
-          <Route exact path='/cuisine/:cuisinename/:pagenum' element={<Cuisines />} />
+          <Route exact path='/cuisine/:cuisinename/:pagenum' element={<CuisinePage />} />
         </Routes>
       </BrowserRouter>
     </>

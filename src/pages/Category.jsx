@@ -27,8 +27,10 @@ const Category = () => {
                     {data.totalResults == 0 && <div>No result found</div>}
                     {data.totalResults >= 1 &&
                         <>
-                            <div className='flex items-center justify-between mb-4'>
-                                <b>{categoryname}</b>
+                            <div className=' mt-6 flex items-center justify-between mb-4'>
+                                <h1 className='border-l-4 border-red-500 font-bold text-lg pl-2'>
+                                    {categoryname}
+                                </h1>
                                 <div>showing {Math.round(parseInt(pagenum / 8) + 1)} of {Math.ceil(parseInt(data.totalResults) / 8)}</div>
                             </div>
                             <div className='grid grid-cols-4 gap-4 mb-4 max-sm:grid-cols-1 max-md:grid-cols-2'>
