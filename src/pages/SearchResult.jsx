@@ -45,7 +45,11 @@ const SearchResult = () => {
                                                 className='w-full h-full object-cover shadow-md hover:scale-105 transition-all duration-1000'
                                             />
                                         </Link>
-                                        <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1 cursor-pointer'>
+                                        <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1 cursor-pointer'
+                                            onClick={() => {
+                                                navigate(`/recipe/${recipe.title}/${recipe.id}`);
+                                            }}
+                                        >
                                             {recipe.title}
                                         </span>
                                     </div>

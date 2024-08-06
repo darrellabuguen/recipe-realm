@@ -41,7 +41,7 @@ const Pagination = (props) => {
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
                         var value = parseInt(e.target.value);
-                        if (value <= parseInt(totalPages) && value > 0) {
+                        if (value <= Math.ceil(parseInt(totalPages) / 8) && value > 0) {
                             props.set((value - 1) * 8);
                         }
                     }

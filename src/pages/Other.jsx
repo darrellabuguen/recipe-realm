@@ -1,10 +1,11 @@
 import React from 'react'
 import useFetch from '../components/useFetch'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Other = () => {
     const apiK = import.meta.env.REACT_APP_API_KEY;
     const { data, loading, error } = useFetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiK}&number=8`);
+    const navigate = useNavigate();
 
     if (loading) return <p>Loading...</p>
     if (error) return <p>Error: {error}</p>
@@ -28,7 +29,11 @@ const Other = () => {
                                             className='w-full h-full object-cover shadow-md hover:scale-105 transition-all duration-1000'
                                         />
                                     </Link>
-                                    <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1 cursor-pointer'>
+                                    <span title={recipe.title} className='font-bold text-sm mt-2 line-clamp-1 cursor-pointer'
+                                        onClick={() => {
+                                            navigate(`/recipe/${recipe.title}/${recipe.id}`);
+                                        }}
+                                    >
                                         {recipe.title}
                                     </span>
                                 </div>
