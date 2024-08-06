@@ -21,7 +21,7 @@ const Similar = (props) => {
                     <div className='grid grid-rows-4 gap-3 my-3'>
                         {data.map((recipe) => {
                             return (
-                                <div key={recipe.id} className='rounded-md'>
+                                <div key={recipe.id} className='rounded-md hover:text-red-500'>
                                     <Link to={`/recipe/${recipe.title}/${recipe.id}`}
                                         className='flex gap-2 max-lg:flex-col max-md:flex-row max-sm:flex-col'
                                     >

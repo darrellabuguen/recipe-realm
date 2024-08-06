@@ -42,20 +42,18 @@ const Recipe = () => {
                             {data.aggregateLikes} likes
                         </span>{" "}
                         | {" "}
-                        <Link to={data.sourceUrl} className='text-sm text-gray-500 hover:text-red-500'>
+                        <Link to={data.sourceUrl}
+                            className='text-sm text-gray-500 hover:text-red-500 break-words'
+                        >
                             {data.sourceUrl}
                         </Link>
                     </div>
-                    <div className='mt-12'>
+                    <div className='mt-10'>
                         <img src={
                             data.image.replace("556x370", "636x393")    //change image size
                         }
                             alt="img"
-                            className='rounded-lg'
-                            style={{
-                                height: "393px",
-                                width: "636px"
-                            }}
+                            className='rounded-lg w-full'
                         />
                     </div>
                     <div className='flex mt-10 leading-8 gap-4 max-md:flex-col'>
