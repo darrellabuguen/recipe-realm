@@ -53,7 +53,7 @@ const Recipe = () => {
                             data.image.replace("556x370", "636x393")    //change image size
                         }
                             alt="img"
-                            className='rounded-lg w-full'
+                            className='rounded-lg max-w-screen-lg'
                         />
                     </div>
                     <div className='flex mt-10 leading-8 gap-4 max-md:flex-col'>

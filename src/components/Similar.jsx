@@ -13,7 +13,7 @@ const Similar = (props) => {
         <>
             {data && (
                 <>
-                    <h2 className='font-medium text-2xl mt-16'
+                    <h2 className='font-medium text-2xl mt-16 mb-4'
                         style={{
                             fontFamily: "Libre Baskerville, serif"
                         }}

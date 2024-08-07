@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Search from '../components/Search';
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -17,16 +17,28 @@ const Navi = () => {
     const [showMenu, setMenu] = useState("0px");
     const [rotateIcon, setRotation] = useState("rotate-0");
 
+    const checkScreen = () => {
+        if (window.innerWidth >= 768) {
+            setMenu("0px");
+        }
+    }
+
+    useEffect(() => {
+        checkScreen();
+        window.addEventListener('resize', checkScreen);
+        return () => window.removeEventListener('resize', checkScreen);
+    });
+
     return (
         <>
             <header className="mb-10 max-md:mb-4">
-                <nav className='flex items-center gap-6 font-medium max-md:gap-2'>
+                <nav className='flex items-center gap-6 w-full font-medium max-md:gap-2'>
                     <div className="logo text-3xl max-lg:text-3xl max-md:flex-1">
                         <Link to={"/"}>
                             Recipe Realm
                         </Link>
                     </div>
-                    <div className='flex flex-1 items-center gap-6 max-md:hidden mr-4'>
+                    <div className='flex flex-grow justify-center items-center gap-16 max-md:hidden mr-4 tracking-widest'>
                         <Link to="/"
                             className="hover:text-red-500"
                         >
@@ -74,7 +86,7 @@ const Navi = () => {
                             Cuisines
                         </Link>
                     </div>
-                    <Search />
+                    <Search className="justify-self-end" />
                     <div
                         className="hidden cursor-pointer max-md:flex hover:text-red-500"
                         onClick={() => {
@@ -89,7 +101,7 @@ const Navi = () => {
                 </nav>
             </header>
             <div
-                className="mobile-container ml-2 z-10 flex flex-col gap-4 font-medium max-md:mb-10 overflow-hidden transition-all duration-300 ease-linear"
+                className="mobile-container ml-2 z-10 tracking-widest flex flex-col gap-4 font-medium max-md:mb-10 overflow-hidden transition-all duration-300 ease-linear"
                 style={{
                     maxHeight: `${showMenu}`
                 }}
