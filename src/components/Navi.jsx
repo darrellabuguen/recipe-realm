@@ -31,7 +31,7 @@ const Navi = () => {
 
     return (
         <>
-            <header className="mb-10 max-md:mb-4">
+            <header className="mb-10 max-md:mb-1">
                 <nav className='flex items-center gap-6 w-full font-medium max-md:gap-2'>
                     <div className="logo text-3xl max-lg:text-3xl max-md:flex-1">
                         <Link to={"/"}>
@@ -56,12 +56,12 @@ const Navi = () => {
 
                             onClick={() => {
                                 let categories = document.querySelector(".category-container");
-                                isHovered(`${categories.scrollHeight}px`);
+                                isHovered(hovered == "0px" ? `${categories.scrollHeight}px` : "0px");
                             }}
                         >
-                            Categories
+                            <span className="flex items-center gap-1">Categories <RiArrowDownSLine className="h-5 w-5" /></span>
                             <div
-                                className='absolute bg-slate-100 left-0 font-normal overflow-hidden rounded-md shadow-xl category-container transition-all delay-75'
+                                className='absolute bg-slate-100 top-10 left-0 font-normal overflow-hidden rounded-md shadow-xl category-container transition-all delay-75'
                                 style={{
                                     maxHeight: `${hovered}`
                                 }}
@@ -133,7 +133,8 @@ const Navi = () => {
                     <div
                         className='bg-slate-100 font-normal overflow-hidden rounded-md shadow-xl mbcategory-container transition-all duration-200 ease-linear'
                         style={{
-                            maxHeight: `${hovered}`
+                            maxHeight: `${hovered}`,
+                            marginTop: `${hovered == "0px" ? "0rem" : "0.4rem"}`
                         }}
                     >
                         <div className='overflow-hidden rounded-md z-20 items-center flex flex-col'>
