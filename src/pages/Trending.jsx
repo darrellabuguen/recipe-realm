@@ -14,7 +14,6 @@ const Trending = () => {
         <>
             {data && (
                 <>
-                    <h1 className='border-l-4 border-red-500 font-bold text-lg pl-2 mt-4 mb-4'>Trending Recipes</h1>
                     <div className='grid grid-cols-4 gap-4 max-sm:grid-cols-1 max-md:grid-cols-2'>
                         {data.recipes.map((recipe) => {
                             return (
