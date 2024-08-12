@@ -9,7 +9,11 @@ const Home = () => {
     return (
         <>
             <Trending />
-            <h1 className='border-l-4 border-red-500 font-bold text-lg pl-2 mt-12 mb-4'>Trending Recipes</h1>
+            <h1 className='font-bold text-lg mt-12 mb-4'
+                style={{
+                    fontFamily: "Libre Baskerville, serif",
+                }}
+            >Trending Recipes</h1>
             <Trending />
             <Other />
         </>

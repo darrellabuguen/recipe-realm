@@ -68,7 +68,7 @@ const Recipe = () => {
                                     <span className='text-base'>{data.servings} PEOPLE</span>
                                 </li>
                                 <li
-                                    className='pl-2 pr-4 cursor-pointer'
+                                    className='pl-2 pr-4 cursor-pointer hover:text-red-500'
                                     onClick={() => {
                                         window.print();
                                     }}
@@ -107,7 +107,7 @@ const Recipe = () => {
                                                 type="checkbox"
                                                 name={ing.name}
                                                 id={ing.nameClean}
-                                                className=' pointer-events-none transition-all delay-75'
+                                                className=' pointer-events-none transition-all delay-75 accent-red-500'
                                             />
                                             <p className='pointer-events-none transition-all delay-75'>{ing.original}</p>
                                         </li>

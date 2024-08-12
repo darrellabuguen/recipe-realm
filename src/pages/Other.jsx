@@ -14,7 +14,11 @@ const Other = () => {
         <>
             {data && (
                 <div className='mt-12'>
-                    <h1 className='border-l-4 border-red-500 font-bold text-lg pl-2 mt-6 mb-4'>Other recipes you might like</h1>
+                    <h1 className='font-bold text-lg mt-6 mb-4'
+                        style={{
+                            fontFamily: "Libre Baskerville, serif",
+                        }}
+                    >Other recipes you might like</h1>
                     <div className='grid grid-cols-4 gap-4  max-sm:grid-cols-1 max-md:grid-cols-2'>
                         {data.recipes.map((recipe) => {
                             return (
